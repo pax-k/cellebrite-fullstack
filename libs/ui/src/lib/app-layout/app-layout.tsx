@@ -1,16 +1,27 @@
 import React from 'react';
-import { Container, AppBar, Toolbar, Typography } from '@material-ui/core';
+import {
+  Container,
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+} from '@material-ui/core';
 import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { muiTheme } from '@cellebrite/data';
+import { NextRouter } from 'next/router';
 
 /* eslint-disable-next-line */
 export interface AppLayoutProps {
   children?: React.ReactNode;
+  router?: NextRouter;
 }
 
-export function AppLayout({ children }: AppLayoutProps) {
+function GoBack() {}
+
+export function AppLayout({ children, router }: AppLayoutProps) {
   return (
     <div>
       <ThemeProvider theme={muiTheme}>
@@ -24,10 +35,20 @@ export function AppLayout({ children }: AppLayoutProps) {
           </Toolbar>
         </AppBar>
         <Container>
-          <main style={{ marginTop: '50px' }}>{children}</main>
+          {router && router.pathname !== '/' && (
+            <div style={{ marginTop: '12px' }}>
+              <IconButton onClick={() => router.back()}>
+                <ArrowBackIcon />
+              </IconButton>
+              <Typography variant="button" color="textSecondary">
+                Go Back
+              </Typography>
+            </div>
+          )}
+          <main style={{ marginTop: '40px' }}>{children}</main>
           <footer>
             <Typography variant="body2" color="textSecondary" align="center">
-              Copyright © 20212
+              Cellebrite Romania © 2021
             </Typography>
           </footer>
         </Container>

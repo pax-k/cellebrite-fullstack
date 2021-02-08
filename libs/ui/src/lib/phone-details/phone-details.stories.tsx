@@ -13,6 +13,7 @@ export const add = () => {
   const props: PhoneDetailsProps = {
     view: 'add',
     onSubmit,
+    data: undefined,
   };
 
   return <PhoneDetails {...props} />;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Button, LinearProgress, MenuItem, Container } from '@material-ui/core';
+import { Button, LinearProgress, MenuItem } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import { IPhone, PhoneTypeEnum } from '@cellebrite/data';
 
 /* eslint-disable-next-line */
 export interface PhoneDetailsProps {
   view: 'add' | 'edit';
-  data?: IPhone;
+  data: IPhone | undefined;
   onSubmit: (data: IPhone) => void;
 }
 
@@ -52,8 +52,8 @@ export function PhoneDetails({
         }
         return errors;
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        onSubmit(values);
+      onSubmit={async (values, { setSubmitting }) => {
+        await onSubmit(values);
         setSubmitting(false);
       }}
     >
@@ -66,6 +66,7 @@ export function PhoneDetails({
                 name="id"
                 type="text"
                 label="ID"
+                key="id"
                 disabled
                 style={{ width: '100%' }}
               />
@@ -77,11 +78,14 @@ export function PhoneDetails({
               type="text"
               name="type"
               label="Type"
+              key="type"
               select={true}
               style={{ width: '100%' }}
             >
               {Object.values(PhoneTypeEnum).map((type) => (
-                <MenuItem value={type}>{type}</MenuItem>
+                <MenuItem key={type} value={type}>
+                  {type}
+                </MenuItem>
               ))}
             </Field>
           </div>
@@ -91,6 +95,7 @@ export function PhoneDetails({
               name="color"
               type="text"
               label="Color"
+              key="color"
               style={{ width: '100%' }}
             />
           </div>
@@ -100,6 +105,7 @@ export function PhoneDetails({
               name="serial"
               type="text"
               label="Serial"
+              key="serial"
               style={{ width: '100%' }}
             />
           </div>
@@ -109,6 +115,7 @@ export function PhoneDetails({
               name="metadata"
               type="text"
               label="Metadata"
+              key="metadata"
               style={{ width: '100%' }}
             />
           </div>

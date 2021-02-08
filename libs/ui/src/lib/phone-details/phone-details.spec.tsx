@@ -1,11 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import PhoneDetails from './phone-details';
+import { PhoneDetails, PhoneDetailsProps } from './phone-details';
 
 describe('PhoneDetails', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<PhoneDetails />);
+    const onSubmit = () => {};
+    const props: PhoneDetailsProps = {
+      view: 'add',
+      onSubmit,
+      data: undefined,
+    };
+    const { baseElement } = render(<PhoneDetails {...props} />);
     expect(baseElement).toBeTruthy();
   });
 });

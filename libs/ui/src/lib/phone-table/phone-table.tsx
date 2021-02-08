@@ -1,8 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import {
   DataGrid,
   ColDef,
-  ValueGetterParams,
   ValueFormatterParams,
   RowModel,
 } from '@material-ui/data-grid';
@@ -53,7 +52,6 @@ export function PhoneTable({
 }: PhoneTableProps) {
   const classes = useStyles();
   const [selectedRows, setSelectedRows] = useState([]);
-  console.log(selectedRows);
   const onRowSelected = (row) => {
     const foundIndex = selectedRows.findIndex((r) => r.id === row.data.id);
     if (row.isSelected) {
@@ -102,6 +100,7 @@ export function PhoneTable({
         columns={columns}
         pageSize={5}
         checkboxSelection
+        disableMultipleSelection={true}
         onRowSelected={onRowSelected}
       />
       <Button

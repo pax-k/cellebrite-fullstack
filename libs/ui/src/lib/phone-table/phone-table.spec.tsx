@@ -1,11 +1,39 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { PhoneTypeEnum } from '@cellebrite/data';
 
-import PhoneTable from './phone-table';
+import { PhoneTable, PhoneTableProps } from './phone-table';
 
 describe('PhoneTable', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<PhoneTable />);
+    const rows = [
+      {
+        id: '1',
+        type: PhoneTypeEnum.Apple,
+        color: 'Jon',
+        serial: '123',
+        metadata: { test: 1 },
+      },
+      {
+        id: '2',
+        type: PhoneTypeEnum.Samsung,
+        color: 'Jon',
+        serial: '123',
+        metadata: { test: 1 },
+      },
+    ];
+
+    const onAddRow = () => {};
+
+    const onRowEdit = (row) => {};
+    const onRowsDelete = (selectedRows) => {};
+    const props: PhoneTableProps = {
+      rows,
+      onAddRow,
+      onRowEdit,
+      onRowsDelete,
+    };
+    const { baseElement } = render(<PhoneTable {...props} />);
     expect(baseElement).toBeTruthy();
   });
 });

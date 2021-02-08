@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { IndexPage, IndexPageProps } from '@cellebrite/ui';
 import { PhoneTypeEnum } from '@cellebrite/data';
+import axios from 'axios';
 
 export function Index({ rows }) {
   const router = useRouter();
+  const [showToast, setShowToast] = useState(false);
+  const [toastData, setToastData] = useState({ message: '', severity: '' });
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
   const onRowAdd = () => router.push('/phone/new');
   const onRowEdit = (row) => {
     const { id } = row;
     router.push(`/phone/${id}`);
   };
-  const onRowsDelete = (rows) => {
-    console.log(rows);
+  const onRowsDelete = async (rows) => {
+    const ids = rows.map((row) => row.id);
+    console.log(ids);
+    const res = await axios.delete('http://localhost:4200/api/v1/phones', {
+      data: { ids },
+    });
+    refreshData();
+    setShowToast(true);
+    if (res.status === 200) {
+      setToastData({ message: 'Successfully deleted', severity: 'success' });
+    } else {
+      setToastData({ message: 'Error', severity: 'error' });
+    }
   };
   return (
     <IndexPage
@@ -19,37 +36,21 @@ export function Index({ rows }) {
       onAddRow={onRowAdd}
       onRowEdit={onRowEdit}
       onRowsDelete={onRowsDelete}
+      showToast={showToast}
+      toastData={toastData}
     />
   );
 }
 
 export async function getServerSideProps() {
-  // const res = await fetch(`https://.../data`);
-  // const data = await res.json();
-
-  // if (!data) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
-
-  const rows = [
-    {
-      id: '1',
-      type: PhoneTypeEnum.Apple,
-      color: 'Jon',
-      serial: '123',
-      metadata: { test: 1 },
-    },
-    {
-      id: '2',
-      type: PhoneTypeEnum.Samsung,
-      color: 'Jon',
-      serial: '123',
-      metadata: { test: 1 },
-    },
-  ];
-  return { props: { rows } };
+  const res = await fetch(`http://localhost:4200/api/v1/phones`);
+  const data = await res.json();
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  return { props: { rows: data.items } };
 }
 
 export default Index;

@@ -1,14 +1,8 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-// import { Container, AppBar, Toolbar, Typography } from '@material-ui/core';
-// import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
-// import { ThemeProvider } from '@material-ui/core/styles';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import theme from '../theme';
 import { AppLayout } from '@cellebrite/ui';
-
-function CustomApp({ Component, pageProps }: AppProps) {
+function CustomApp({ Component, pageProps, router }: AppProps) {
   return (
     <>
       <Head>
@@ -19,7 +13,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <div className="app">
-        <AppLayout>
+        <AppLayout router={router}>
           <Component {...pageProps} />
         </AppLayout>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import {
   DataGrid,
   ColDef,
@@ -34,12 +35,28 @@ const baseColumns: ColDef[] = [
     headerName: 'Metadata',
     sortable: false,
     flex: 1,
+    // valueFormatter: ({ value }) => {
+    //   try {
+    //     return JSON.stringify(value);
+    //   } catch (e) {
+    //     return JSON.stringify({});
+    //   }
+    // },
+  },
+  {
+    field: 'createdAt',
+    headerName: 'Created',
+    flex: 1,
     valueFormatter: ({ value }) => {
-      try {
-        return JSON.stringify(value);
-      } catch (e) {
-        return JSON.stringify({});
-      }
+      return moment(value as Date).format('DD-MM-YYYY, H:mm:s');
+    },
+  },
+  {
+    field: 'updatedAt',
+    headerName: 'Updated',
+    flex: 1,
+    valueFormatter: ({ value }) => {
+      return moment(value as Date).format('DD-MM-YYYY, H:mm:s');
     },
   },
 ];

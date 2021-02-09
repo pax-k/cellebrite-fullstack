@@ -29,7 +29,7 @@ async function bootstrap() {
   app.enableCors();
   const configService = app.get(ConfigService);
   const swaggerOptions = new DocumentBuilder()
-    .setTitle('Nest MEAN')
+    .setTitle('Cellebrite')
     .setDescription('API Documentation')
     .setVersion('1.0.0')
     .setBasePath('/api/v1')

@@ -29,6 +29,8 @@ export const edit = () => {
       color: 'Jon',
       serial: '123',
       metadata: '{ "test": 1 }',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     onSubmit,
   };

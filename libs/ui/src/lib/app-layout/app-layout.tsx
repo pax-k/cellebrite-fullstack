@@ -23,8 +23,7 @@ function GoBack() {}
 
 export function AppLayout({ children, router }: AppLayoutProps) {
   return (
-    <div>
-      <ThemeProvider theme={muiTheme}>
+    <ThemeProvider theme={muiTheme}>
         <CssBaseline />
         <AppBar position="relative">
           <Toolbar>
@@ -46,14 +45,13 @@ export function AppLayout({ children, router }: AppLayoutProps) {
             </div>
           )}
           <main style={{ marginTop: '40px' }}>{children}</main>
-          <footer>
-            <Typography variant="body2" color="textSecondary" align="center">
-              Cellebrite Romania © 2021
-            </Typography>
-          </footer>
         </Container>
+        <footer>
+          <Typography variant="body2" color="textSecondary" align="center">
+            Cellebrite Romania © 2021
+          </Typography>
+        </footer>
       </ThemeProvider>
-    </div>
   );
 }
 

@@ -18,7 +18,7 @@ export class PhoneEntity implements IPhone {
   @Column()
   type: string;
 
-  @Column({ unique: false })
+  @Column({ unique: true })
   serial: string;
 
   @Column()

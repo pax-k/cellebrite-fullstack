@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { IndexPage, IndexPageProps } from '@cellebrite/ui';
-import { PhoneTypeEnum } from '@cellebrite/data';
+import { IToastData } from '@cellebrite/data';
 import axios from 'axios';
 
 export function Index({ rows }) {
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
-  const [toastData, setToastData] = useState({ message: '', severity: '' });
+  const [toastData, setToastData] = useState<IToastData>({
+    message: '',
+    severity: undefined,
+  });
   const refreshData = () => {
     router.replace(router.asPath);
   };

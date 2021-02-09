@@ -13,6 +13,8 @@ describe('PhoneTable', () => {
         color: 'Jon',
         serial: '123',
         metadata: { test: 1 },
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         id: '2',
@@ -20,6 +22,8 @@ describe('PhoneTable', () => {
         color: 'Jon',
         serial: '123',
         metadata: { test: 1 },
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
     ];
 

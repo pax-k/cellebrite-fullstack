@@ -15,6 +15,8 @@ export const primary = () => {
       type: PhoneTypeEnum.Apple,
       color: 'Jon',
       serial: '123',
+      createdAt: new Date(),
+      updatedAt: new Date(),
       metadata: { test: 1 },
     },
     {
@@ -23,6 +25,8 @@ export const primary = () => {
       color: 'Jon',
       serial: '123',
       metadata: { test: 1 },
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   ];
   const [tableRows, setTableRows] = useState(rows);

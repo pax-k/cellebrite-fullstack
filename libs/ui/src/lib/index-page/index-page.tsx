@@ -1,5 +1,4 @@
 import React from 'react';
-import { useStyles } from './index-page.styles';
 import { PhoneTable, PhoneTableProps } from '@cellebrite/ui';
 import { IToastData } from '@cellebrite/data';
 import { Typography, Snackbar } from '@material-ui/core';
@@ -19,7 +18,6 @@ export function IndexPage({
   showToast,
   toastData,
 }: IndexPageProps) {
-  const classes = useStyles();
   return (
     <div>
       <Typography variant="h5" color="inherit" align="center">

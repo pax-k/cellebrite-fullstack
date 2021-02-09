@@ -1,11 +1,6 @@
 import {
-  IsArray,
-  IsDefined,
-  IsInt,
-  IsNumber,
   IsOptional,
   IsString,
-  ValidateNested,
 } from 'class-validator';
 
 export class UpdatePhoneDto {

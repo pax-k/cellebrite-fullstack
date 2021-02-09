@@ -4,4 +4,4 @@ import { PaginationParams } from './pagination-params.dto';
 import { SearchParams } from './search-params.dto';
 import { RemoveMultiplePhonesDto } from './remove-multiple.dto';
 
-export { CreatePhoneDto, UpdatePhoneDto, PaginationParams, SearchParams };
+export { CreatePhoneDto, UpdatePhoneDto, PaginationParams, SearchParams, RemoveMultiplePhonesDto };

@@ -3,12 +3,14 @@ import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress, MenuItem } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import { IPhone, PhoneTypeEnum } from '@cellebrite/data';
+import moment from 'moment';
+import { useStyles } from './phone-details.styles';
 
 /* eslint-disable-next-line */
 export interface PhoneDetailsProps {
   view: 'add' | 'edit';
-  data: IPhone | undefined;
-  onSubmit: (data: IPhone) => void;
+  data: Partial<IPhone> | undefined;
+  onSubmit: (data: Partial<IPhone>) => void;
 }
 
 function isJSON(str) {
@@ -24,7 +26,8 @@ export function PhoneDetails({
   data = {} as IPhone,
   onSubmit,
 }: PhoneDetailsProps) {
-  const { id, type, color, serial, metadata } = data;
+  const classes = useStyles();
+  const { id, type, color, serial, metadata, createdAt, updatedAt } = data;
   return (
     <Formik
       initialValues={{
@@ -33,6 +36,8 @@ export function PhoneDetails({
         color,
         serial,
         metadata,
+        createdAt: moment(createdAt as Date).format('DD-MM-YYYY, H:mm:s'),
+        updatedAt: moment(updatedAt as Date).format('DD-MM-YYYY, H:mm:s'),
       }}
       validate={(values) => {
         const errors: Partial<IPhone> = {};
@@ -52,7 +57,10 @@ export function PhoneDetails({
         }
         return errors;
       }}
-      onSubmit={async (values, { setSubmitting }) => {
+      onSubmit={async (
+        { createdAt, updatedAt, ...values },
+        { setSubmitting, resetForm }
+      ) => {
         await onSubmit(values);
         setSubmitting(false);
       }}
@@ -68,7 +76,33 @@ export function PhoneDetails({
                 label="ID"
                 key="id"
                 disabled
-                style={{ width: '100%' }}
+                className={classes.input}
+              />
+            </div>
+          )}
+          {view === 'edit' && (
+            <div>
+              <Field
+                component={TextField}
+                name="createdAt"
+                type="text"
+                label="Created At"
+                key="createdAt"
+                disabled
+                className={classes.input}
+              />
+            </div>
+          )}
+          {view === 'edit' && (
+            <div>
+              <Field
+                component={TextField}
+                name="updatedAt"
+                type="text"
+                label="Updated At"
+                key="updatedAt"
+                disabled
+                className={classes.input}
               />
             </div>
           )}
@@ -80,7 +114,7 @@ export function PhoneDetails({
               label="Type"
               key="type"
               select={true}
-              style={{ width: '100%' }}
+              className={classes.input}
             >
               {Object.values(PhoneTypeEnum).map((type) => (
                 <MenuItem key={type} value={type}>
@@ -96,7 +130,7 @@ export function PhoneDetails({
               type="text"
               label="Color"
               key="color"
-              style={{ width: '100%' }}
+              className={classes.input}
             />
           </div>
           <div>
@@ -106,7 +140,7 @@ export function PhoneDetails({
               type="text"
               label="Serial"
               key="serial"
-              style={{ width: '100%' }}
+              className={classes.input}
             />
           </div>
           <div>
@@ -116,7 +150,7 @@ export function PhoneDetails({
               type="text"
               label="Metadata"
               key="metadata"
-              style={{ width: '100%' }}
+              className={classes.input}
             />
           </div>
           {isSubmitting && <LinearProgress />}

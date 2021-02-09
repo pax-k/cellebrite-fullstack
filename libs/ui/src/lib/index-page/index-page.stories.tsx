@@ -17,6 +17,8 @@ export const primary = () => {
       color: 'Jon',
       serial: '123',
       metadata: { test: 1 },
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: '2',
@@ -24,6 +26,8 @@ export const primary = () => {
       color: 'Jon',
       serial: '123',
       metadata: { test: 1 },
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   ];
 

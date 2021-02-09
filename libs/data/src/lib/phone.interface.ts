@@ -6,5 +6,7 @@ export interface IPhone {
   color: string;
   serial: string;
   metadata: unknown;
+  createdAt: Date;
+  updatedAt: Date;
 }
 

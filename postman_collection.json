@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "55cd602e-810c-413f-bed7-bc05b4a72180",
+		"name": "Cellebrite Phones API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Phone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"Nokia\",\n    \"serial\": \"6616\",\n    \"color\": \"black\",\n    \"metadata\": {\n        \"test\": 555\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/phones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"phones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Phones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/phones?offset=0&field=type",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"phones"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "field",
+							"value": "type"
+						},
+						{
+							"key": "search",
+							"value": "No",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Phone By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/phones/04bd7e83-18b3-4eab-b7d4-4573ff4a86a1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"phones",
+						"04bd7e83-18b3-4eab-b7d4-4573ff4a86a1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Phone By Id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"Nokiaxxxxx\",\n    \"serial\": \"666a\",\n    \"color\": \"black\",\n    \"metadata\": {\n        \"test\":3333\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/phones/04bd7e83-18b3-4eab-b7d4-4573ff4a86a1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"phones",
+						"04bd7e83-18b3-4eab-b7d4-4573ff4a86a1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Phone",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"Nokia\",\n    \"serial\": \"666\",\n    \"color\": \"black\",\n    \"metadata\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/phones/3b11ec65-343c-46cd-9b05-29e237383537",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"phones",
+						"3b11ec65-343c-46cd-9b05-29e237383537"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Multiple Phones",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ids\": [\"3e52d044-ac37-48bd-b712-c5375ef7954a\", \"430f6c71-58c2-432b-8da4-ced2a0abfc2e\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/phones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"phones"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -2,6 +2,8 @@
 
 ## An example of a full-stack app
 
+![](https://raw.githubusercontent.com/nzpopa/cellebrite-fullstack/main/screenshot.png)
+
 [Nx](https://nx.dev/) was used for bootstrapping the workspace.
 
 Tech stack:
@@ -60,7 +62,6 @@ Postman collection exported in `postman_collection.json`
                     ├── phone-details
                     ├── phone-page
                     └── phone-table
-
 
 ---
 
